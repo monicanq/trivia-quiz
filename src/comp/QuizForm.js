@@ -1,15 +1,19 @@
-import  { useState } from 'react';
+import  { useState, useContext } from 'react';
+import { useHistory } from "react-router-dom";
+import { Context } from '../context/globalState';
 import { categories } from '../data/categories';
 
 
 const QuizForm = () => {
+    let history = useHistory();
     const [category, setCategory] = useState('history');
     const [catCode, setCatCode] = useState(23);
     const [difficulty, setDifficulty] = useState('easy');
     const [amount, setAmount] = useState(10);
-
-    const url = `https://opentdb.com/api.php?amount=${amount}&category=${catCode}&difficulty=${difficulty}&type=multiple`;
-
+    const [url, setUrl] = useContext(Context);
+    console.log(url)
+    let urli = `https://opentdb.com/api.php?amount=${amount}&category=${catCode}&difficulty=${difficulty}&type=multiple&encode=url3986`;
+    
     const handleCategory = (e, id, code) => {
         setCategory(id);
         setCatCode(code);
@@ -22,6 +26,8 @@ const QuizForm = () => {
     }
     const handleSubmit = (e) => {
         e.preventDefault();
+        setUrl(urli);
+        history.push('/quiz')
     }
     
     const levelArr = ['hard', 'medium', 'easy'];
