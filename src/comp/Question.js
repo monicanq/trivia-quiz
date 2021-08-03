@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 
-const Question = ({question, idx, answers, setAnswers}) => {
+const Question = ({question, idx, answers, setAnswers, solved}) => {
     const [shuffledAnswers, setShuffledAnswers] = useState ([]);
 
 
@@ -39,6 +39,7 @@ const Question = ({question, idx, answers, setAnswers}) => {
 
     }, [question.correct_answer, question.incorrect_answers])
 
+
     // Set answer input by user
     const handleChange = (e, questionNum, i) => {
         if (e.target.value === 'correct'){
@@ -56,16 +57,15 @@ const Question = ({question, idx, answers, setAnswers}) => {
             {shuffledAnswers.map((ans, i) => {
                 return(
                     <div key={ i }>
-                    <label key={ i } className='answers'>
-                        <input
-                        name={`q${ idx }`}
-                        type="radio"
-                        value={ ans.correct ? 'correct' :  'wrong' }
-                        onChange={ (e) => { handleChange(e, `q${ idx + 1}`, idx ) } }
-                        />
-                        { decodeURIComponent(ans.question) }
-                        { ans.correct ? ' correct' :  ' wrong'  }
-                    </label>
+                        <label>
+                            <input
+                            name={`q${ idx }`}
+                            type="radio"
+                            value={ ans.correct ? 'correct' :  'wrong' }
+                            onChange={ (e) => { handleChange(e, `q${ idx + 1}`, idx ) } }
+                            />
+                            { decodeURIComponent(ans.question) }
+                        </label>
                 </div>
                 )
             })}

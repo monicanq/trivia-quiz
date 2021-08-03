@@ -27,7 +27,7 @@ export const categories = [
         "category" : "Mythology",
         "name" : "mythology",
         "icon" : "https://img.icons8.com/wired/64/000000/anubis.png",
-        "cat_code" : 120
+        "cat_code" : 20
     },
     {
         "category" : "Geography",

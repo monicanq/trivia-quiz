@@ -89,6 +89,12 @@ label.answers{
     cursor: pointer;
 }
 
+/* Score */ 
+
+.score-show{
+    font-size: 5rem;
+}
+
 /* Loader */
 .spinner{
     width: 100px;
