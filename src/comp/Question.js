@@ -1,8 +1,11 @@
 import { useEffect, useState } from 'react';
 
 
-const Question = ({question, idx, answers, setAnswers, solved}) => {
+const Question = ({question, idx, answers, setAnswers, solved, showWrong, setShowWrong}) => {
     const [shuffledAnswers, setShuffledAnswers] = useState ([]);
+    const [activateWrong, setActivateWrong] = useState (false);
+    const questionNumber = `q${ idx + 1 }`;
+
 
 
     // function to shuffle the answers array
@@ -33,16 +36,15 @@ const Question = ({question, idx, answers, setAnswers, solved}) => {
             const shuffledAnswers = shuffle(answersArr);
     
             return shuffledAnswers;
-    
         }
         setShuffledAnswers(constructAnswers()) 
 
     }, [question.correct_answer, question.incorrect_answers])
 
 
-    // Set answer input by user
+    // Add correct answers to an array to calculate the score later
     const handleChange = (e, questionNum, i) => {
-        if (e.target.value === 'correct'){
+        if (e.target.value === 'correct' && answers.indexOf(questionNum) < 0){
             setAnswers([...answers, questionNum]);
         } else if (answers.indexOf(questionNum) >= 0){
             const updateAnswers = [...answers];
@@ -51,22 +53,31 @@ const Question = ({question, idx, answers, setAnswers, solved}) => {
         }
     }
 
+
+    useEffect(() => {
+        showWrong ? setActivateWrong(true) : setActivateWrong(false)
+    }, [showWrong])
+
     return ( 
         <>  
-            <p className='question'>{ idx + 1} - { decodeURIComponent(question.question) }</p>
+            <p className={ (activateWrong && !answers.includes(questionNumber)) ? 'wrong question' : 'question' }>
+                { idx + 1 } - { decodeURIComponent(question.question) }
+            </p>
+
             {shuffledAnswers.map((ans, i) => {
                 return(
                     <div key={ i }>
-                        <label>
+                        <label className='answers'>
                             <input
-                            name={`q${ idx }`}
+                            name={ questionNumber }
                             type="radio"
                             value={ ans.correct ? 'correct' :  'wrong' }
-                            onChange={ (e) => { handleChange(e, `q${ idx + 1}`, idx ) } }
+                            onChange={ (e) => { handleChange(e, questionNumber, idx ) }}
+                            disabled = { showWrong ? 'disabled' : '' }    
                             />
                             { decodeURIComponent(ans.question) }
                         </label>
-                </div>
+                    </div>
                 )
             })}
         </>

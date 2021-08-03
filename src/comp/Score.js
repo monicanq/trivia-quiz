@@ -4,7 +4,7 @@ const Score = ({ length, answers }) => {
     const scoreCalc = () => Math.round((answers.length / length)*100);
     const yourScore = scoreCalc();
     const [output, setOutput] = useState(0);
-    console.log('output', output, 'score', yourScore);
+    // console.log('output', output, 'score', yourScore);
     
     useEffect(() => {
         const timer = setInterval(() => {

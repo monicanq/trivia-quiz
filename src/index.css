@@ -65,12 +65,12 @@ form{
     background-color: var(--tertiary);
 }
 button{
-    min-width: 80%;
+    min-width: 100%;
     padding: 20px;
-    margin: 50px;
+    margin: 10px 0;
+    position: relative;
     border-radius: 1rem;
     border: none;
-    /* border-color: var(--secondary); */
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
     background-color: var(--tertiary);
     color: var(--primary);
@@ -81,6 +81,14 @@ button{
 button:hover{
     opacity: 80%;
 }
+button:disabled{
+    opacity: 80%;
+    background-color: #eee;
+}
+/* Quiz block */
+.quiz-container{
+    padding: 50px 15px;
+}
 
 /* Questions */ 
 label.answers{
@@ -88,10 +96,14 @@ label.answers{
     padding: 10px;
     cursor: pointer;
 }
+.wrong{
+    color: red;
+    font-weight: bold;
+}
 
 /* Score */ 
-
 .score-show{
+    text-align: center;
     font-size: 5rem;
 }
 

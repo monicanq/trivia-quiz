@@ -12,6 +12,7 @@ const QuizTemplate = () => {
     const { data, isPending, error } = useFetch(url);
     const [solved, setSolved] = useState(false);
     const [answers, setAnswers] = useState([]);
+    const  [showWrong, setShowWrong] = useState(false);
     
     const handleSubmit = (e) => {
         setSolved(true)
@@ -20,7 +21,8 @@ const QuizTemplate = () => {
 
     const handleWrong = (e) => {
         console.log('handling wrong')
-        
+        setShowWrong(true);
+
     }
     
     const handleAgain = (e) => {
@@ -34,11 +36,41 @@ const QuizTemplate = () => {
             {data && 
                 <>
                     <h1>{ decodeURIComponent(data.results[0].category) }</h1>
-                    {solved && <Score length={ data.results.length } answers= { answers }/>}
-                    {data.results.map((question, idx) => <Question key={idx} question={ question } idx = { idx } answers={ answers } setAnswers={ setAnswers } solved={ solved } />)}
-                    <button onClick={ e => handleSubmit(e) }>Submit Answers</button>
-                    <button onClick={ e => handleWrong(e) }>See Wrong Answers</button>
-                    <button onClick={ e => handleAgain(e) }>Submit Answers</button>
+                    {solved && 
+                        <div className='quiz-container'>
+                            <Score length={ data.results.length } answers= { answers }/>
+                            <button 
+                                onClick={ e => handleWrong(e) }
+                                disabled = { showWrong ? 'disabled' : '' }
+                                >
+                                    See Wrong Answers
+                            </button>
+                            <button    
+                                onClick={ e => handleAgain(e) }
+                                >
+                                    Reset Quiz
+                            </button>
+                        </div>
+                    }
+                    <div className='quiz-container'>
+                        {data.results.map((question, idx) => 
+                            <Question key={idx} 
+                                    question={ question } 
+                                    idx = { idx } 
+                                    answers={ answers } 
+                                    setAnswers={ setAnswers } 
+                                    solved={ solved }
+                                    showWrong={ showWrong }
+                                    setShowWrong={ setShowWrong }
+                                    />)}
+                        <button 
+                            onClick={ e => handleSubmit(e) }
+                            disabled = { showWrong ? 'disabled' : '' }
+                            >
+                                Submit Answers
+                        </button>
+                    </div>
+
                 </>
             }
         </div>
