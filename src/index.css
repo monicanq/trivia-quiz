@@ -79,10 +79,11 @@ button{
 }
 
 button:hover{
-    background: #c1d49dd3;
+    opacity: 0.8;
+    /* background: #b7c0a6d3; */
 }
 button:disabled{
-    opacity: 80%;
+    opacity: 0.8;
     background-color: #eee;
 }
 
