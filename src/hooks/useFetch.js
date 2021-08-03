@@ -19,8 +19,10 @@ const useFetch = (url) =>  {
                 setData(data);
                 setIsPending(false);
                 setError(null);
+
             })
             .catch(err => {
+                console.log('found error in errro')
                 if (err.name === 'AbortError'){
                     console.log('fetch aborted');
                 } else {

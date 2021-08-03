@@ -36,10 +36,10 @@ export const categories = [
         "cat_code" : 22
     },
     {
-        "category" : "Art",
-        "name" : "art",
-        "icon" : "https://img.icons8.com/wired/64/000000/drawing.png",
-        "cat_code" : 25
+        "category" : "Books",
+        "name" : "books",
+        "icon" : "https://img.icons8.com/wired/64/000000/books.png",
+        "cat_code" : 10
     },
     {
         "category" : "Music",

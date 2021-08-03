@@ -24,3 +24,10 @@ yarn-error.log*
 
 #design
 drawing.svg
+
+
+#firebase
+.firebaserc
+firebase.json
+/.firebase
+

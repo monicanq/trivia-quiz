@@ -79,7 +79,7 @@ button{
 }
 
 button:hover{
-    opacity: 80%;
+    background: #c1d49dd3;
 }
 button:disabled{
     opacity: 80%;

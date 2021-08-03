@@ -20,18 +20,26 @@ const QuizTemplate = () => {
     }
 
     const handleWrong = (e) => {
-        console.log('handling wrong')
         setShowWrong(true);
-
     }
-    
 
+    // Check that the response that we get has questions in it
+    if(data){
+        if(data.response_code !== 0){
+            return(
+                <>
+                    <p>Sorry we could not find enough questions for your query</p>
+                    <Link to='/'>Please try another query</Link>
+                </>
+            )
+        }
+    }
 
     return ( 
         <div className='quiz-template'>
-            {error && <p>Sorry we could not fetch the data requested</p>}
+            { error && <div> { error }</div>}
             {isPending && <Loader />}
-            {data && 
+            { data && 
                 <>
                     <h1>{ decodeURIComponent(data.results[0].category) }</h1>
                     {solved && 
