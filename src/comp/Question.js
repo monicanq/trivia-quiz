@@ -67,7 +67,7 @@ const Question = ({question, idx, answers, setAnswers, solved, showWrong, setSho
             {shuffledAnswers.map((ans, i) => {
                 return(
                     <div key={ i }>
-                        <label className='answers'>
+                        <label className={ (activateWrong && ans.correct) ? 'answers correct' : 'answers'}>
                             <input
                             name={ questionNumber }
                             type="radio"

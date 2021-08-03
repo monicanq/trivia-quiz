@@ -4,7 +4,7 @@ import useFetch from '../hooks/useFetch';
 import Question from "./Question";
 import Score from "./Score";
 import Loader from "./Loader";
-
+import { Link } from "react-router-dom";
 
 const QuizTemplate = () => {
     const context = useContext(Context);
@@ -25,9 +25,7 @@ const QuizTemplate = () => {
 
     }
     
-    const handleAgain = (e) => {
-        console.log('handling again')
-    }
+
 
     return ( 
         <div className='quiz-template'>
@@ -45,11 +43,9 @@ const QuizTemplate = () => {
                                 >
                                     See Wrong Answers
                             </button>
-                            <button    
-                                onClick={ e => handleAgain(e) }
-                                >
-                                    Reset Quiz
-                            </button>
+                            <Link to='/'>
+                                <button>Choose Another Quiz</button>
+                            </Link>
                         </div>
                     }
                     <div className='quiz-container'>
@@ -70,7 +66,6 @@ const QuizTemplate = () => {
                                 Submit Answers
                         </button>
                     </div>
-
                 </>
             }
         </div>

@@ -35,7 +35,7 @@ const QuizForm = () => {
     const numberOfQuestions = [ 10, 20, 30];
 
     return ( 
-        <div className="quiz-form">
+        <div className="form-container">
             <form >
                 <div className="categories">
                     <h2>CATEGORIES</h2>
